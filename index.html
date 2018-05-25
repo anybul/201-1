@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=960">
+    <link href="../../old-framework/widgets/2.0.1/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../old-framework/widgets/2.0.1/production.min.js"></script>
+
+<style type="text/css">
+.step.step-9{display:none;}
+.step+#description{
+    top: 72px;
+    left: 35px;
+    width: 182px;
+    z-index: 1;
+    text-align: left;
+}
+@keyframes description-anim{
+	0%{left:-600px;}
+	14%{left:44px;}
+	20%{left:24px;}
+	26%{left:39px;}
+	32%{left:30px;}
+	38%{left:36px;}
+	44%{left:34px;}
+}
+
+#checkButton{width:96px;}
+#field.finished #checkButton{display:none;}
+
+#copyright-hint{font-size:18px}
+
+.clickable{
+    left: 61px;
+    width: 165px;
+    height: 43px;
+}
+
+.draggable{
+    left: 30px;
+    width: 158px;
+    height: 54px;
+}
+.droppable{
+    width: 158px;
+    height: 54px;
+}
+.draggable.fake-element.filled.draggable-right{
+	transform:none;
+	animation:none;
+	-webkit-animation:none;
+	cursor:default;
+}
+.draggable.fake-element .inner-element,.draggable.fake-element .inner-element{
+    color:#666666;
+	cursor:default;
+}
+#field[data-task="2"] .draggable,
+#draggable6,
+#draggable7,
+#draggable8,
+#draggable9,
+#draggable10{
+	left: 774px;
+}
+.draggable .inner-element{
+    width: 158px;
+    height: 54px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+#field[data-task="1"] #draggable1{
+    top: 105px;
+}
+#field[data-task="1"] #draggable2{
+    top: 172px;
+}
+#field[data-task="1"] #draggable3{
+    top: 239px;
+}
+#field[data-task="1"] #draggable4{
+    top: 306px;
+}
+#field[data-task="1"] #draggable5{
+    top: 373px;
+}
+#dragNDropContainer{
+	height:480px;
+}
+#field[data-task="2"] #dragNDropContainer,
+#field[data-task="4"] #dragNDropContainer,
+#field[data-task="6"] #dragNDropContainer,
+#field[data-task="8"] #dragNDropContainer
+{
+    top:70px;
+	height:510px;
+}
+
+#draggable1, #draggable6
+{
+	top:11px;
+}
+#draggable2, #draggable7{
+	top:78px;
+}
+#draggable3, #draggable8{
+	top:145px;
+}
+#draggable4, #draggable9{
+	top:212px;
+}
+#draggable5, #draggable10{
+	top:279px;
+}
+#droppable1{
+	left: 304px;
+    top: 382px;
+}
+#droppable2, #field[data-task="2"] #droppable1{
+	left: 493px;
+    top: 382px;
+}
+#droppable3{
+    top: 417px;
+    left: 304px;
+}
+#droppable4{
+    top: 417px;
+    left: 493px;
+}
+#field[data-task="1"] #droppable1 {
+    top: 352px;
+    left: 401px;
+}
+
+
+#field.finished .clickable.clickable-right-final.no-box-shadow{
+	-webkit-animation:none;
+	animation:none;
+}
+
+#image0{
+    left: 215px;
+    top: 81px;
+    width: 530px;
+    height: 472px;
+    text-align: left;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    background-color: #f0f0f0;
+	background-size: 530px;
+	background-position-y: 0px;
+}
+#field[data-task="5"] #image0,
+#field[data-task="6"] #image0,
+#field[data-task="7"] #image0,
+#field[data-task="8"] #image0{
+	height: 504px;
+}
+#field[data-task="1"] #image0,
+#field[data-task="2"] #image0{
+    background-image:url(img/gaika.png);
+}
+#field[data-task="3"] #image0{
+    background-image:url(img/shina.png);
+}
+#field[data-task="4"] #image0{
+    background-image:url(img/posuda.png);
+}
+#field[data-task="5"] #image0{
+    background-image:url(img/sovok.png);
+}
+
+
+#image1{
+    top: 413px;
+    left: 354px;
+    font-size: 28px;
+	color: #666666;
+}
+#image2{
+    top: 413px;
+    left: 513px;
+    font-size: 28px;
+	color: #666666;
+}
+#field[data-task="2"] #image3,
+#field[data-task="4"] #image3,
+#field[data-task="6"] #image3,
+#field[data-task="8"] #image3{
+    top: 452px;
+    left: 304px;
+}
+
+#field.finished .clickable{}
+/*transition-duration:1s;cursor:default;opacity:0
+#field.finished .clickable.clickable-right{opacity:1;top:307px;}*/
+#field.finished #clickable1, #field.finished #clickable6{
+    
+}
+#field.finished #clickable2, #field.finished #clickable7{
+    
+}
+#field.finished #clickable3, #field.finished #clickable10{
+    
+}
+#field.finished #clickable4, #field.finished #clickable9{
+    
+}
+#field.finished #clickable5, #field.finished #clickable8{
+   
+}
+
+#field.finished .clickable.no-box-shadow{
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+
+
+
+/**/#field{background-image:url('source/screens/01-1.jpg');background-size:100%;}
+
+
+
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi){
+	#field[data-task="1"] #image2, #field[data-task="9"] #image3{
+		background-image:url(img/kirpichi_2x.jpg);
+	}
+	#field[data-task="2"] #image2, #field[data-task="9"] #image4{
+		background-image:url(img/chimia_2x.jpg);
+	}
+	#field[data-task="3"] #image2, #field[data-task="9"] #image5{
+		background-image:url(img/folga_2x.jpg);
+	}
+	#field[data-task="4"] #image2, #field[data-task="9"] #image6{
+		background-image:url(img/zdanie_2x.jpg);
+	}
+	#field[data-task="5"] #image2, #field[data-task="9"] #image7{
+		background-image:url(img/rybak_2x.jpg);
+	}
+	#field[data-task="6"] #image2, #field[data-task="9"] #image8{
+		background-image:url(img/busi_2x.jpg);
+	}
+	#field[data-task="7"] #image2, #field[data-task="9"] #image9{
+		background-image:url(img/ukrashenie_2x.jpg);
+	}
+	#field[data-task="8"] #image2, #field[data-task="9"] #image10{
+		background-image:url(img/stakani_2x.jpg);
+	}
+}
+
+#field.finished #description{}
+
+#field[data-task="9"] .step{display:none;opacity:0;}
+/*#field[data-task="4"].finished #description{
+	opacity:0;
+	transition-duration:1s;
+}
+#field[data-task="4"].finished #checkButton{
+	display:none;
+}
+*/
+
+.step.right, .step.step-animation.right {
+    animation-delay: 0s;
+    transition-delay: 0s;
+}
+
+#field[data-task="7"] .final-text {
+     opacity: 1;
+}
+@keyframes zadanie-vypolneno{
+	0%{opacity:0;}
+	5%{
+		opacity:0;
+		left:429px;
+		width:38px;
+		font-size:0px;
+		background-color:#4EE2D6;
+		box-shadow: 0px 0px 6px 4px rgba(36,221,208,1);
+	}
+	5.1%{opacity:1}
+	29.5%{
+		left:36px;
+		width:210px;
+		font-size:0px;
+		box-shadow: 0px 0px 0px 0 rgba(36,221,208,1);
+	}
+	29.51%{
+		font-size:17px;
+	}
+	55%{
+		background-color:#24ddd0;/*#9BEDE4;*/
+
+	}
+}
+</style>
+
+<script type="text/javascript">
+var test_custom_widget = {
+    create:function(){
+		return [];
+	},
+	onFinish:function(){
+		setTimeout(function(){
+			$('#droppable1').css({'transition-duration':'1s','left':'493px'});
+			$('#draggable4').css({'transition-duration':'1s','left':'304px'});
+		}, 500);
+	}
+};
+
+var task=[{},
+// step1
+{
+    "description":"Подпиши предмет на&nbsp;рисунке",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":2000,
+	"test_custom_widget":[],
+	"test_preloadimg":[
+		'img/busi.jpg',
+		'img/busi_2x.jpg',
+		'img/chimia.jpg',
+		'img/chimia_2x.jpg',
+		'img/folga.jpg',
+		'img/folga_2x.jpg',
+		'img/kirpichi.jpg',
+		'img/kirpichi_2x.jpg',
+		'img/rybak.jpg',
+		'img/rybak_2x.jpg',
+		'img/stakani.jpg',
+		'img/stakani_2x.jpg',
+		'img/ukrashenie.jpg',
+		'img/ukrashenie_2x.jpg',
+		'img/zdanie.jpg',
+		'img/zdanie_2x.jpg'
+	],
+	"test_images":[
+		{"value":""}
+	],
+	"test_drag_n_drop":{
+		"draggables":[
+			{"returnable":"true"},
+			{"value":"галка"},
+			{"value":"шайба"},
+			{"value":"шина"},
+			{"value":"гайка"},
+			{"value":"дырка"}
+		],
+		"droppables":[
+			{"checkOnDrop":true},
+			{"values":["гайка"]}
+		]
+	}
+},
+//2
+{
+    "description":"Из чего он&nbsp;сделан?",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":1000,
+	
+	"test_images":[
+		{"value":""},
+		{"value":"тело"},
+		{"value":"вещество"},
+		{"value":"гайка","classes":"draggable fake-element filled draggable-right"}
+	],
+	"test_drag_n_drop":{
+		"draggables":[
+			{"returnable":"true"},
+			{"value":"бумага"},
+			{"value":"древесина"},
+			{"value":"песок"},
+			{"value":"стекло"},
+			{"value":"металл"}
+		],
+		"droppables":[
+			{"checkOnDrop":true},
+			{"values":["металл"]}
+		]
+	}
+},
+//3
+{
+    "description":"Из чего это сделано?",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":1000,
+	"test_images":[
+		{"value":""},
+		{"value":"тело"},
+		{"value":"вещество"}
+	],
+	"test_drag_n_drop":{
+		"draggables":[
+			{"returnable":"true"},
+			{"value":"галка"},
+			{"value":"шайба"},
+			{"value":"шина"},
+			{"value":"гайка"},
+			{"value":"дырка"},
+			
+			{"value":"бумага"},
+			{"value":"древесина"},
+			{"value":"резина"},
+			{"value":"стекло"},
+			{"value":"металл"}
+		],
+		"droppables":[
+			{"checkOnDrop":true},
+			{"values":["шина"]},
+			{"values":["резина"]}
+		]
+	},
+	"test_fake_reload":[]
+},
+//4
+{
+    "description":"Из чего это сделано?",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":1000,
+	"test_images":[
+		{"value":""},
+		{"value":"тело"},
+		{"value":"вещество"}
+	],
+	"test_drag_n_drop":{
+		"draggables":[
+			{"returnable":"true"},
+			{"value":"кувшин"},
+			{"value":"стакан"},
+			{"value":"чайник"},
+			{"value":"миска"},
+			{"value":"кружка"},
+			
+			{"value":"бумага"},
+			{"value":"древесина"},
+			{"value":"резина"},
+			{"value":"стекло"},
+			{"value":"металл"}
+			
+		],
+		"droppables":[
+			{"checkOnDrop":true},
+			{"values":["стакан","миска"]},
+			{"values":["стекло"]},
+			{"values":["стакан","миска"]}
+		]
+	},
+	"test_fake_reload":[]
+},
+//6
+{
+    "description":"Из чего это сделано?",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":1000,
+	//"finalText":"Задание выполнено!",
+
+	"test_images":[
+		{"value":""},
+		{},
+		{}
+	],
+	"test_drag_n_drop":{
+		"draggables":[
+			{"returnable":"true"},
+			{"value":"бумага"},
+			{"value":"древесина"},
+			{"value":"резина"},
+			{"value":"стекло"},
+			{"value":"металл"}
+		],
+		"droppables":[
+			{"checkOnDrop":true},
+			{"values":["резина"]}
+		]
+	}
+},
+//7
+{
+    "description":"Из чего это сделано?",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":1000,
+	//"finalText":"Задание выполнено!",
+	"test_clickable":[
+		{"multiselect":false,"autocheck":true},
+		{"value":"рубин"},
+		{"value":"сапфир"},
+		{"value":"бирюза"},
+		{"value":"изумруд","right":true},
+		{"value":"яшма"},
+		{"value":"алмаз"}
+	],
+	"test_images":[
+		{"value":""},
+		{},
+		{}
+	],
+	"test_fake_reload":[]
+},
+//8
+{
+    "description":"Из чего это сделано?",
+	//"button":{"successText":"Верно!"},
+	"nextStepDelay":3000,
+	"finalText":"Задание выполнено!",
+	"test_clickable":[
+		{"multiselect":false,"autocheck":true},
+		{"value":"слюда"},
+		{"value":"алмаз"},
+		{"value":"кварц"},
+		{"value":"цемент"},
+		{"value":"стекло","right":true},
+		{"value":"медь"}
+	],
+	"test_images":[
+		{"value":""},
+		{},
+		{}
+	],
+	"test_fake_reload":[]
+},
+{
+	"test_final_text":[],
+	"test_fake_reload":[],
+	"finalText":"Задание выполнено!",
+	"test_images":[
+		{"value":"Руды железа"},
+		{"value":"Руды меди"},
+		{"value":"Руды алюминия"},
+		//visible start
+		//pics
+		{"value":"глина","classes":"final-image"},
+		{"value":"нефть","classes":"final-image"},
+		{"value":"алюминий","classes":"final-image"},
+		{"value":"цемент","classes":"final-image"},
+		{"value":"мрамор","classes":"final-image"},
+		{"value":"бирюза","classes":"final-image"},
+		{"value":"изумруд","classes":"final-image"},
+		{"value":"стекло","classes":"final-image"}
+	],
+	"test_copyrights":{
+		"title":"Авторы фотографий",
+		"elements":[
+			{"link":"https://www.flickr.com/photos/7603557@N08/5939996945/","name":"Кирпичи","author":"Lars Hammar. Flickr"},
+			{"link":"https://www.flickr.com/photos/86377068@N07/12374998624/","name":"Бытовая химия","author":"themorningglory. Flickr"},
+			{"link":"https://www.flickr.com/photos/gummypiglet/8622073637","name":"Фигурки из фольги","author":"GummyPiglet. Flickr"},
+			{"link":"https://www.flickr.com/photos/neonzu1/37077114430","name":"Здание","author":"Ken Owen. Flickr"},
+			{"link":"https://www.flickr.com/photos/faun070/28472230716","name":"Мраморный рыбак","author":"faun070. Flickr"},
+			{"link":"https://www.flickr.com/photos/125121000@N07/27845003039","name":"Бирюзовые бусы","author":"Alexandra Georgoudaki. Flickr"},
+			{"link":"https://www.flickr.com/photos/fortysixand2photography/10238649936","name":"Украшение с изумрудом","author":"Forty-Six and 2 Photography. Flickr"},
+			{"link":"https://www.flickr.com/photos/42573918@N00/6855246214","name":"Стеклянные стаканы","author":"Gail Thomas. Flickr"}
+		]
+	}
+}
+]
+</script>
+
+</head>
+<body>
+	<!--div class="zbrdv" style="position:absolute;z-index:5;" onclick="nexStep()">next
+	</div-->
+</body>
+</html>
