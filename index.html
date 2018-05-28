@@ -7,13 +7,22 @@
     <script type="text/javascript" src="../../old-framework/widgets/2.0.1/production.min.js"></script>
 
 <style type="text/css">
-.step.step-9{display:none;}
+.step{display:none;}
+.step.fake-step{display:inline-block;}
+#description{display:none;}
+#field[data-task="1"] #description,#field[data-task="2"] #description{
+    display:block;
+}
 .step+#description{
     top: 72px;
     left: 35px;
     width: 182px;
     z-index: 1;
     text-align: left;
+}
+.some-empty .draggable:not(.draggable-wrong){
+    animation:none;
+	-webkit-animation:none;
 }
 @keyframes description-anim{
 	0%{left:-600px;}
@@ -123,18 +132,25 @@
     top: 382px;
 }
 #droppable3{
-    top: 417px;
+    top: 446px;
     left: 304px;
 }
-#droppable4{
-    top: 417px;
-    left: 493px;
-}
+ 
+
 #field[data-task="1"] #droppable1 {
     top: 352px;
     left: 401px;
 }
-
+#field[data-task="3"] #droppable1,
+#field[data-task="3"] #droppable2,
+#field[data-task="5"] #droppable1,
+#field[data-task="5"] #droppable2  {
+	top: 353px;
+}
+#field[data-task="5"] #droppable3{
+    left: 493px;
+	top: 416px;
+}
 
 #field.finished .clickable.clickable-right-final.no-box-shadow{
 	-webkit-animation:none;
@@ -154,11 +170,11 @@
 	background-size: 530px;
 	background-position-y: 0px;
 }
-#field[data-task="5"] #image0,
-#field[data-task="6"] #image0,
-#field[data-task="7"] #image0,
-#field[data-task="8"] #image0{
+#field[data-task="3"].finished #image0,
+#field[data-task="4"] #image0,
+#field[data-task="5"] #image0{
 	height: 504px;
+	transition-duration:1s;
 }
 #field[data-task="1"] #image0,
 #field[data-task="2"] #image0{
@@ -179,13 +195,13 @@
     top: 413px;
     left: 354px;
     font-size: 28px;
-	color: #666666;
+	color: #2d2d2d;
 }
 #image2{
     top: 413px;
     left: 513px;
     font-size: 28px;
-	color: #666666;
+	color: #2d2d2d;
 }
 #field[data-task="2"] #image3,
 #field[data-task="4"] #image3,
@@ -193,8 +209,40 @@
 #field[data-task="8"] #image3{
     top: 452px;
     left: 304px;
+	-moz-box-shadow: #a4f8f2 0 0 8px 2px;
+	-webkit-box-shadow: #a4f8f2 0 0 8px 2px;
+	box-shadow: #a4f8f2 0 0 8px 2px;
 }
-
+#field[data-task="3"] #image3{
+    top: 453px;
+    left: 304px;
+	position: absolute;
+    -webkit-box-shadow: inset 1px 1px 6px 0 rgba(90,90,90,0.1);
+    -moz-box-shadow: inset 1px 1px 6px 0 rgba(90,90,90,0.1);
+    background-color: #F9F9F9;
+    box-shadow: inset 1px 1px 6px 0 rgba(90,90,90,0.1);
+    box-sizing: border-box;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 158px;
+    height: 54px;
+}
+#field[data-task="3"].finished #image3{
+    top: 516px;
+    left: 304px;
+	transition-duration:1.5s;
+}
+#field[data-task="1"] #image1,
+#field[data-task="1"] #image2{
+    opacity:0;
+}
+#field[data-task="1"].finished #image1,
+#field[data-task="1"].finished #image2{
+    opacity:1;
+	transition-duration:0.5s;
+	transition-delay:1.5s;
+}
 #field.finished .clickable{}
 /*transition-duration:1s;cursor:default;opacity:0
 #field.finished .clickable.clickable-right{opacity:1;top:307px;}*/
@@ -222,7 +270,7 @@
 
 
 
-/**/#field{background-image:url('source/screens/01-1.jpg');background-size:100%;}
+/*#field{background-image:url('source/screens/01-1.jpg');background-size:100%;}*/
 
 
 
@@ -274,30 +322,10 @@
 #field[data-task="7"] .final-text {
      opacity: 1;
 }
-@keyframes zadanie-vypolneno{
-	0%{opacity:0;}
-	5%{
-		opacity:0;
-		left:429px;
-		width:38px;
-		font-size:0px;
-		background-color:#4EE2D6;
-		box-shadow: 0px 0px 6px 4px rgba(36,221,208,1);
-	}
-	5.1%{opacity:1}
-	29.5%{
-		left:36px;
-		width:210px;
-		font-size:0px;
-		box-shadow: 0px 0px 0px 0 rgba(36,221,208,1);
-	}
-	29.51%{
-		font-size:17px;
-	}
-	55%{
-		background-color:#24ddd0;/*#9BEDE4;*/
-
-	}
+#field.finished[data-task="5"] .final-text {
+    opacity: 1;
+    -webkit-animation: zadanie-vypolneno-4 6.2s 1 ease-in-out;
+    animation: zadanie-vypolneno-4 6.2s 1 ease-in-out;
 }
 </style>
 
@@ -314,6 +342,34 @@ var test_custom_widget = {
 	}
 };
 
+var test_fakesteps = {
+	create:function(){
+		result = [];
+		for(var i=1;i<task.length-1;i++){
+			var step = $('<div></div>').addClass('step').addClass('fake-step');
+			var stepnum = globalVars.currentTask==1 ? 1 : globalVars.currentTask-1;
+			console.log(stepnum);
+			if(stepnum > i){
+				step.addClass('right');
+			} else if(stepnum == i){
+				step.addClass('current');
+				step.html(stepnum);
+			} else {
+				step.html(i);
+			}
+			result.push(step);
+		}
+		
+		return result;
+	},
+	onFinish:function(){
+		if(globalVars.currentTask>1){
+			$('.fake-step:eq('+(globalVars.currentTask-2)+')').addClass('right').addClass('step-animation').html('');
+		}
+		
+	}
+};
+
 var task=[{},
 // step1
 {
@@ -321,26 +377,14 @@ var task=[{},
 	//"button":{"successText":"Верно!"},
 	"nextStepDelay":2000,
 	"test_custom_widget":[],
+	"test_fakesteps":[],
 	"test_preloadimg":[
-		'img/busi.jpg',
-		'img/busi_2x.jpg',
-		'img/chimia.jpg',
-		'img/chimia_2x.jpg',
-		'img/folga.jpg',
-		'img/folga_2x.jpg',
-		'img/kirpichi.jpg',
-		'img/kirpichi_2x.jpg',
-		'img/rybak.jpg',
-		'img/rybak_2x.jpg',
-		'img/stakani.jpg',
-		'img/stakani_2x.jpg',
-		'img/ukrashenie.jpg',
-		'img/ukrashenie_2x.jpg',
-		'img/zdanie.jpg',
-		'img/zdanie_2x.jpg'
+		'img/gaika.png'
 	],
 	"test_images":[
-		{"value":""}
+		{"value":""},
+		{"value":"тело"},
+		{"value":"вещество"}
 	],
 	"test_drag_n_drop":{
 		"draggables":[
@@ -362,12 +406,12 @@ var task=[{},
     "description":"Из чего он&nbsp;сделан?",
 	//"button":{"successText":"Верно!"},
 	"nextStepDelay":1000,
-	
+	"test_fakesteps":[],
 	"test_images":[
 		{"value":""},
 		{"value":"тело"},
 		{"value":"вещество"},
-		{"value":"гайка","classes":"draggable fake-element filled draggable-right"}
+		{"value":"гайка","classes":"draggable fake-element filled draggable-right ui-draggable-disabled"}
 	],
 	"test_drag_n_drop":{
 		"draggables":[
@@ -389,10 +433,12 @@ var task=[{},
     "description":"Из чего это сделано?",
 	//"button":{"successText":"Верно!"},
 	"nextStepDelay":1000,
+	"test_fakesteps":[],
 	"test_images":[
 		{"value":""},
 		{"value":"тело"},
-		{"value":"вещество"}
+		{"value":"вещество"},
+		{}//fake droppable"classes":"droppable"
 	],
 	"test_drag_n_drop":{
 		"draggables":[
@@ -422,9 +468,10 @@ var task=[{},
     "description":"Из чего это сделано?",
 	//"button":{"successText":"Верно!"},
 	"nextStepDelay":1000,
+	"test_fakesteps":[],
 	"test_images":[
 		{"value":""},
-		{"value":"тело"},
+		{"value":"тела"},
 		{"value":"вещество"}
 	],
 	"test_drag_n_drop":{
@@ -441,7 +488,6 @@ var task=[{},
 			{"value":"резина"},
 			{"value":"стекло"},
 			{"value":"металл"}
-			
 		],
 		"droppables":[
 			{"checkOnDrop":true},
@@ -452,21 +498,27 @@ var task=[{},
 	},
 	"test_fake_reload":[]
 },
-//6
+//5
 {
     "description":"Из чего это сделано?",
 	//"button":{"successText":"Верно!"},
 	"nextStepDelay":1000,
-	//"finalText":"Задание выполнено!",
-
+	"test_fakesteps":[],
+	"finalText":"Задание выполнено!",
 	"test_images":[
 		{"value":""},
-		{},
-		{}
+		{"value":"тело"},
+		{"value":"вещества"}
 	],
 	"test_drag_n_drop":{
 		"draggables":[
 			{"returnable":"true"},
+			{"value":"ложка"},
+			{"value":"тяпка"},
+			{"value":"совок"},
+			{"value":"грабли"},
+			{"value":"топор"},
+			
 			{"value":"бумага"},
 			{"value":"древесина"},
 			{"value":"резина"},
@@ -475,84 +527,9 @@ var task=[{},
 		],
 		"droppables":[
 			{"checkOnDrop":true},
-			{"values":["резина"]}
-		]
-	}
-},
-//7
-{
-    "description":"Из чего это сделано?",
-	//"button":{"successText":"Верно!"},
-	"nextStepDelay":1000,
-	//"finalText":"Задание выполнено!",
-	"test_clickable":[
-		{"multiselect":false,"autocheck":true},
-		{"value":"рубин"},
-		{"value":"сапфир"},
-		{"value":"бирюза"},
-		{"value":"изумруд","right":true},
-		{"value":"яшма"},
-		{"value":"алмаз"}
-	],
-	"test_images":[
-		{"value":""},
-		{},
-		{}
-	],
-	"test_fake_reload":[]
-},
-//8
-{
-    "description":"Из чего это сделано?",
-	//"button":{"successText":"Верно!"},
-	"nextStepDelay":3000,
-	"finalText":"Задание выполнено!",
-	"test_clickable":[
-		{"multiselect":false,"autocheck":true},
-		{"value":"слюда"},
-		{"value":"алмаз"},
-		{"value":"кварц"},
-		{"value":"цемент"},
-		{"value":"стекло","right":true},
-		{"value":"медь"}
-	],
-	"test_images":[
-		{"value":""},
-		{},
-		{}
-	],
-	"test_fake_reload":[]
-},
-{
-	"test_final_text":[],
-	"test_fake_reload":[],
-	"finalText":"Задание выполнено!",
-	"test_images":[
-		{"value":"Руды железа"},
-		{"value":"Руды меди"},
-		{"value":"Руды алюминия"},
-		//visible start
-		//pics
-		{"value":"глина","classes":"final-image"},
-		{"value":"нефть","classes":"final-image"},
-		{"value":"алюминий","classes":"final-image"},
-		{"value":"цемент","classes":"final-image"},
-		{"value":"мрамор","classes":"final-image"},
-		{"value":"бирюза","classes":"final-image"},
-		{"value":"изумруд","classes":"final-image"},
-		{"value":"стекло","classes":"final-image"}
-	],
-	"test_copyrights":{
-		"title":"Авторы фотографий",
-		"elements":[
-			{"link":"https://www.flickr.com/photos/7603557@N08/5939996945/","name":"Кирпичи","author":"Lars Hammar. Flickr"},
-			{"link":"https://www.flickr.com/photos/86377068@N07/12374998624/","name":"Бытовая химия","author":"themorningglory. Flickr"},
-			{"link":"https://www.flickr.com/photos/gummypiglet/8622073637","name":"Фигурки из фольги","author":"GummyPiglet. Flickr"},
-			{"link":"https://www.flickr.com/photos/neonzu1/37077114430","name":"Здание","author":"Ken Owen. Flickr"},
-			{"link":"https://www.flickr.com/photos/faun070/28472230716","name":"Мраморный рыбак","author":"faun070. Flickr"},
-			{"link":"https://www.flickr.com/photos/125121000@N07/27845003039","name":"Бирюзовые бусы","author":"Alexandra Georgoudaki. Flickr"},
-			{"link":"https://www.flickr.com/photos/fortysixand2photography/10238649936","name":"Украшение с изумрудом","author":"Forty-Six and 2 Photography. Flickr"},
-			{"link":"https://www.flickr.com/photos/42573918@N00/6855246214","name":"Стеклянные стаканы","author":"Gail Thomas. Flickr"}
+			{"values":["совок"]},
+			{"values":["древесина","металл"]},
+			{"values":["древесина","металл"]}
 		]
 	}
 }
