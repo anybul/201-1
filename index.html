@@ -276,29 +276,18 @@
 
 
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi){
-	#field[data-task="1"] #image2, #field[data-task="9"] #image3{
-		background-image:url(img/kirpichi_2x.jpg);
+	#field[data-task="1"] #image0,
+	#field[data-task="2"] #image0{
+		background-image:url(img/gaika@2x.png);
 	}
-	#field[data-task="2"] #image2, #field[data-task="9"] #image4{
-		background-image:url(img/chimia_2x.jpg);
+	#field[data-task="3"] #image0{
+		background-image:url(img/shina@2x.png);
 	}
-	#field[data-task="3"] #image2, #field[data-task="9"] #image5{
-		background-image:url(img/folga_2x.jpg);
+	#field[data-task="4"] #image0{
+		background-image:url(img/posuda@2x.png);
 	}
-	#field[data-task="4"] #image2, #field[data-task="9"] #image6{
-		background-image:url(img/zdanie_2x.jpg);
-	}
-	#field[data-task="5"] #image2, #field[data-task="9"] #image7{
-		background-image:url(img/rybak_2x.jpg);
-	}
-	#field[data-task="6"] #image2, #field[data-task="9"] #image8{
-		background-image:url(img/busi_2x.jpg);
-	}
-	#field[data-task="7"] #image2, #field[data-task="9"] #image9{
-		background-image:url(img/ukrashenie_2x.jpg);
-	}
-	#field[data-task="8"] #image2, #field[data-task="9"] #image10{
-		background-image:url(img/stakani_2x.jpg);
+	#field[data-task="5"] #image0{
+		background-image:url(img/sovok@2x.png);
 	}
 }
 
@@ -348,7 +337,7 @@ var test_fakesteps = {
 		for(var i=1;i<task.length-1;i++){
 			var step = $('<div></div>').addClass('step').addClass('fake-step');
 			var stepnum = globalVars.currentTask==1 ? 1 : globalVars.currentTask-1;
-			console.log(stepnum);
+			//console.log(stepnum);
 			if(stepnum > i){
 				step.addClass('right');
 			} else if(stepnum == i){
@@ -379,7 +368,15 @@ var task=[{},
 	"test_custom_widget":[],
 	"test_fakesteps":[],
 	"test_preloadimg":[
-		'img/gaika.png'
+		'img/gaika.png',
+		'img/posuda.png',
+		'img/shina.png',
+		'img/sovok.png',
+		
+		'img/gaika@2x.png',
+		'img/posuda@2x.png',
+		'img/shina@2x.png',
+		'img/sovok@2x.png'
 	],
 	"test_images":[
 		{"value":""},
