@@ -20,6 +20,11 @@
     z-index: 1;
     text-align: left;
 }
+#reloadStep[data-step="2"]:before{content:'1';}
+#reloadStep[data-step="3"]:before{content:'2';}
+#reloadStep[data-step="4"]:before{content:'3';}
+#reloadStep[data-step="5"]:before{content:'4';}
+#reloadStep[data-step="6"]:before{content:'5';}
 .some-empty .draggable:not(.draggable-wrong){
     animation:none;
 	-webkit-animation:none;
@@ -53,6 +58,13 @@
 .droppable{
     width: 158px;
     height: 54px;
+	background-color:#ccc;
+}
+.droppable.ui-droppable-hover{
+	background-color:#b6b6b6
+}
+.droppable.ui-droppable-hover{
+    background-color:#808080;
 }
 .draggable.fake-element.filled.draggable-right{
 	transform:none;
