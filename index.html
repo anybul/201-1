@@ -60,8 +60,8 @@
     height: 54px;
 	background-color:#ccc;
 }
-.droppable.ui-droppable-hover{
-	background-color:#b6b6b6
+.droppable:hover{
+	background-color:#b6b6b6;
 }
 .droppable.ui-droppable-hover{
     background-color:#808080;
@@ -225,7 +225,7 @@
 	-webkit-box-shadow: #a4f8f2 0 0 8px 2px;
 	box-shadow: #a4f8f2 0 0 8px 2px;
 }
-#field[data-task="3"] #image3{
+#field[data-task="3"] #image3, #field[data-task="4"] #image3{
     top: 453px;
     left: 304px;
 	position: absolute;
@@ -240,9 +240,17 @@
     width: 158px;
     height: 54px;
 }
+#field[data-task="4"] #image3{
+	left:493px;
+}
 #field[data-task="3"].finished #image3{
     top: 516px;
     left: 304px;
+	transition-duration:1.5s;
+}
+#field[data-task="4"].finished #image3{
+    top: 516px;
+    left: 493px;
 	transition-duration:1.5s;
 }
 #field[data-task="1"] #image1,
@@ -405,7 +413,7 @@ var task=[{},
 			{"value":"дырка"}
 		],
 		"droppables":[
-			{"checkOnDrop":true},
+			{"checkOnDrop":300},
 			{"values":["гайка"]}
 		]
 	}
@@ -432,7 +440,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":true},
+			{"checkOnDrop":300},
 			{"values":["металл"]}
 		]
 	}
@@ -465,7 +473,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":true},
+			{"checkOnDrop":300},
 			{"values":["шина"]},
 			{"values":["резина"]}
 		]
@@ -481,7 +489,8 @@ var task=[{},
 	"test_images":[
 		{"value":""},
 		{"value":"тела"},
-		{"value":"вещество"}
+		{"value":"вещество"},
+		{}
 	],
 	"test_drag_n_drop":{
 		"draggables":[
@@ -499,7 +508,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":true},
+			{"checkOnDrop":300},
 			{"values":["стакан","миска"]},
 			{"values":["стекло"]},
 			{"values":["стакан","миска"]}
@@ -535,7 +544,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":true},
+			{"checkOnDrop":300},
 			{"values":["совок"]},
 			{"values":["древесина","металл"]},
 			{"values":["древесина","металл"]}
