@@ -119,6 +119,20 @@
 	height:510px;
 }
 
+#field[data-task="3"].finished .draggable-right.filled,
+#field[data-task="4"].finished .draggable-right.filled,
+#field[data-task="4"].finished #droppable3,
+#field[data-task="5"].finished #draggable1,
+#field[data-task="5"].finished #draggable2,
+#field[data-task="5"].finished #draggable4,
+#field[data-task="5"].finished #draggable5,
+#field[data-task="5"].finished #draggable6,
+#field[data-task="5"].finished #draggable8,
+#field[data-task="5"].finished #draggable9{
+	opacity:0;
+	transition: top .2s,left .2s,transform .1s,opacity .2s;
+	transition-delay:0s,0s,0s,.8s;
+}
 #draggable1, #draggable6
 {
 	top:11px;
@@ -231,7 +245,8 @@
 	position: absolute;
     -webkit-box-shadow: inset 1px 1px 6px 0 rgba(90,90,90,0.1);
     -moz-box-shadow: inset 1px 1px 6px 0 rgba(90,90,90,0.1);
-    background-color: #F9F9F9;
+    background-color: #ccc;
+	/* #F9F9F9; */
     box-shadow: inset 1px 1px 6px 0 rgba(90,90,90,0.1);
     box-sizing: border-box;
     -webkit-border-radius: 3px;
@@ -246,11 +261,13 @@
 #field[data-task="3"].finished #image3{
     top: 516px;
     left: 304px;
+	transition-delay:.9s;
 	transition-duration:1.5s;
 }
 #field[data-task="4"].finished #image3{
     top: 516px;
     left: 493px;
+	transition-delay:.9s;
 	transition-duration:1.5s;
 }
 #field[data-task="1"] #image1,
@@ -405,7 +422,7 @@ var task=[{},
 	],
 	"test_drag_n_drop":{
 		"draggables":[
-			{"returnable":"true"},
+			{"returnable":"true", "onWrong":"defaultplace"},
 			{"value":"галка"},
 			{"value":"шайба"},
 			{"value":"шина"},
@@ -413,14 +430,14 @@ var task=[{},
 			{"value":"дырка"}
 		],
 		"droppables":[
-			{"checkOnDrop":300},
+			{"checkOnDrop":true},
 			{"values":["гайка"]}
 		]
 	}
 },
 //2
 {
-    "description":"Из чего он&nbsp;сделан?",
+    "description":"Из чего <br>сделано<br>это тело?",
 	//"button":{"successText":"Верно!"},
 	"nextStepDelay":1000,
 	"test_fakesteps":[],
@@ -432,7 +449,7 @@ var task=[{},
 	],
 	"test_drag_n_drop":{
 		"draggables":[
-			{"returnable":"true"},
+			{"returnable":"true", "onWrong":"defaultplace"},
 			{"value":"бумага"},
 			{"value":"древесина"},
 			{"value":"песок"},
@@ -440,7 +457,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":300},
+			{"checkOnDrop":true},
 			{"values":["металл"]}
 		]
 	}
@@ -449,7 +466,7 @@ var task=[{},
 {
     "description":"Из чего это сделано?",
 	//"button":{"successText":"Верно!"},
-	"nextStepDelay":1000,
+	"nextStepDelay":2000,
 	"test_fakesteps":[],
 	"test_images":[
 		{"value":""},
@@ -459,7 +476,7 @@ var task=[{},
 	],
 	"test_drag_n_drop":{
 		"draggables":[
-			{"returnable":"true"},
+			{"returnable":"true", "onWrong":"defaultplace"},
 			{"value":"галка"},
 			{"value":"шайба"},
 			{"value":"шина"},
@@ -473,7 +490,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":300},
+			{"checkOnDrop":true},
 			{"values":["шина"]},
 			{"values":["резина"]}
 		]
@@ -484,7 +501,7 @@ var task=[{},
 {
     "description":"Из чего это сделано?",
 	//"button":{"successText":"Верно!"},
-	"nextStepDelay":1000,
+	"nextStepDelay":2000,
 	"test_fakesteps":[],
 	"test_images":[
 		{"value":""},
@@ -494,7 +511,7 @@ var task=[{},
 	],
 	"test_drag_n_drop":{
 		"draggables":[
-			{"returnable":"true"},
+			{"returnable":"true", "onWrong":"defaultplace"},
 			{"value":"кувшин"},
 			{"value":"стакан"},
 			{"value":"чайник"},
@@ -508,7 +525,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":300},
+			{"checkOnDrop":true},
 			{"values":["стакан","миска"]},
 			{"values":["стекло"]},
 			{"values":["стакан","миска"]}
@@ -530,7 +547,7 @@ var task=[{},
 	],
 	"test_drag_n_drop":{
 		"draggables":[
-			{"returnable":"true"},
+			{"returnable":"true", "onWrong":"defaultplace"},
 			{"value":"ложка"},
 			{"value":"тяпка"},
 			{"value":"совок"},
@@ -544,7 +561,7 @@ var task=[{},
 			{"value":"металл"}
 		],
 		"droppables":[
-			{"checkOnDrop":300},
+			{"checkOnDrop":true},
 			{"values":["совок"]},
 			{"values":["древесина","металл"]},
 			{"values":["древесина","металл"]}
